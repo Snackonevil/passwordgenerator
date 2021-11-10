@@ -19,15 +19,17 @@ function copyPass() {
 function generatePassword() {
     var passLength = confirmLength(); //Stores user-selected input of length after it meets criteria and is confirmed
     var possibleString = selectCriteria(); //Stores user-selected criteria into a string
-    var password = "";
+    var password = ""; //Variable to store generated characters
 
     console.log(passLength)
     console.log(possibleString);
-    // console.log(Math.floor(Math.random()) * passLength)
+    
     console.log(Math.floor(Math.random() * possibleString.length));
     console.log(possibleString[Math.floor(Math.random() * possibleString.length)]);
 
+    //Iterates random index of possibleString by passLength times
     for (let i = 0; i < passLength; i++) {
+        //Each iteration adds its randomly selected index into the password string
         password += possibleString[Math.floor(Math.random() * possibleString.length)];
     }
 
@@ -100,11 +102,17 @@ function selectCriteria() {
         console.log("no symbols");
     }
 
-    //I need to include a case if none are selected to alert and recall function
+    //If no criteria is selected, criteria length of zero, user is prompted to choose one and the function is recalled.
+    if (criteria.length == 0) {
+      console.log('you didn\'t select anything')
+      alert('You must choose at least one type of character')
+      return selectCriteria()
+    }
 
-    console.log(criteria.join(""));
     return criteria.join("");
 }
+
+//Function to validate that generated password has each criteria
 
 // Write password to the #password input
 function writePassword() {
