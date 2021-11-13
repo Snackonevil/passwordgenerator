@@ -17,15 +17,9 @@ function copyPass() {
 }
 
 function generatePassword() {
-    var passLength = confirmLength(); //Stores user-selected input of length after it meets criteria and is confirmed
+    var passLength = confirmLength(); //Stores user-selected input of length after criteria is met and confirmed
     var possibleString = selectCriteria(); //Stores user-selected criteria into a string
     var password = ""; //Variable to store generated characters
-
-    console.log(passLength)
-    console.log(possibleString);
-    
-    console.log(Math.floor(Math.random() * possibleString.length));
-    console.log(possibleString[Math.floor(Math.random() * possibleString.length)]);
 
     //Iterates random index of possibleString by passLength times
     for (let i = 0; i < passLength; i++) {
@@ -68,8 +62,9 @@ function selectCriteria() {
     const upperCase = lowerCase.toUpperCase();
     const specChar = "~`!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/";
     const numbers = "1234567890";
-    var criteria = []; //Stores separate criteria strings in an array before joining them into one
+    var criteria = []; //Stores separate criteria strings in an array
 
+    alert('Please select at least one type of character to be included in your password')
     var nums = confirm("numbers?");
     if (nums) {
         console.log("yes numbers");
@@ -102,43 +97,34 @@ function selectCriteria() {
         console.log("no symbols");
     }
 
-    //If no criteria is selected, criteria length of zero, user is prompted to choose one and the function is recalled.
+    //If no criteria is selected,  criteria length of zero, user is prompted to choose one and the function is recalled.
     if (criteria.length == 0) {
       console.log('you didn\'t select anything')
-      alert('You must choose at least one type of character')
+      alert('Uh oh! You forgot to pick one!')
       return selectCriteria()
     }
-
-    return criteria.join("");
+    console.log(criteria)
+    
+    return criteria.join("");//Returns criteria array in a single string
 }
 
+
+function validateCriteria() {
+  
+
+
 //Function to validate that generated password has each criteria
+//forEach on each selected criteria array
+//search() possibleString for each criteria, if returns 4 -1 then must regenerate
+//how to regenerate without reprompting... maybe Math code can be a part of it with existing variables..
+}
+
 
 // Write password to the #password input
 function writePassword() {
     var password = generatePassword();
-
     passwordText.value = password;
-
     passwordText.innerHTML = password;
-}
+};
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-// ## Acceptance Criteria
-// ```
-// GIVEN I need a new, secure password
-// WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria
-// WHEN prompted for password criteria
-// THEN I select which criteria to include in the password
-// WHEN prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
-// WHEN asked for character types to include in the password
-// THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
-// WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the page
