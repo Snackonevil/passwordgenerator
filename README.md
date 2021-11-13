@@ -14,6 +14,7 @@ If not, return to step 1.
 Step 3: SELECT CRITERIA
 User is prompted with different types of characters: lowercase, uppercase, numerical, and symbols.
 They are given an opportunity to add them to the criteria of their desired password.
+If no criteria is selected, user is prompted to choose one, and the list restarts.
 
 Step 4: GENERATION
 When prompts are all met, randomly generated password that meets criteria appears in password box.
@@ -21,3 +22,6 @@ When prompts are all met, randomly generated password that meets criteria appear
 Extra: COPY BUTTON
 Clipboard icon can be clicked to select and copy password.
 If box is empty when clicked, user is prompted to generate a password.
+
+
+Issue: Function is needed to verify that the generated password includes as least one of each type of character criteria selected.
